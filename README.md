@@ -1,8 +1,10 @@
 # pathtracer
+
+## Description
 A simple pathtracer for spherical objects
 
-Pseudo-code from Wikipedia :
-
+## Pseudo-code from Wikipedia :
+```
   Color TracePath(Ray ray, count depth) {
     if (depth >= MaxDepth) {
       return Black;  // Bounced enough times.
@@ -46,3 +48,4 @@ Pseudo-code from Wikipedia :
       pixel.color /= numSamples;  // Average samples.
     }
   }
+```
