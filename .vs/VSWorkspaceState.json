@@ -1,17 +1,8 @@
 {
   "ExpandedNodes": [
     "",
-    "\\out",
-    "\\out\\build",
-    "\\out\\pathtracer",
-    "\\out\\pathtracer\\CMakeFiles",
-    "\\out\\pathtracer\\Debug",
-    "\\out\\pathtracer\\pathtracer.dir",
-    "\\out\\pathtracer\\pathtracer.dir\\Debug",
-    "\\out\\x64\\Debug",
-    "\\out\\x64\\Debug\\ZERO_CHECK",
-    "\\out\\x64\\Debug\\ZERO_CHECK\\ZERO_CHECK.tlog"
+    "\\build",
+    "\\pathtracer"
   ],
-  "SelectedNode": "\\pathtracer\\CMakeLists.txt",
   "PreviewInSolutionExplorer": false
 }

@@ -1,0 +1,10 @@
+^D:\CREATIONS\ALGORITHMES\PATHTRACER\BUILD\CMAKEFILES\C71FD26CCA0FD217BCE858BEC919C0F4\GENERATE.STAMP.RULE
+setlocal
+"C:\Program Files\CMake\bin\cmake.exe" -SD:/Creations/Algorithmes/pathtracer -BD:/Creations/Algorithmes/pathtracer/build --check-stamp-list CMakeFiles/generate.stamp.list --vs-solution-file D:/Creations/Algorithmes/pathtracer/build/pathtracer.sln
+if %errorlevel% neq 0 goto :cmEnd
+:cmEnd
+endlocal & call :cmErrorLevel %errorlevel% & goto :cmDone
+:cmErrorLevel
+exit /b %1
+:cmDone
+if %errorlevel% neq 0 goto :VCEnd

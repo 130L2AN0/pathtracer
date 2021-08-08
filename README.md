@@ -3,7 +3,7 @@
 ## Description
 A simple pathtracer for spherical objects
 
-## Pseudo-code from Wikipedia :
+## Pseudo-code from Wikipedia (diffuse objects only) :
 ```
   Color TracePath(Ray ray, count depth) {
     if (depth >= MaxDepth) {
