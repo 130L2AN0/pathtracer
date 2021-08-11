@@ -1,27 +1,70 @@
 #include <iostream>
 #include <string>
-#include <cmath>
+#define _USE_MATH_DEFINES
+#include <math.h>
 
-struct Vect
+
+struct Vect3
 {
 	double x, y, z;
+	double coeffs[3];
 
-	Vect(const double &x_ = 0, const double &y_ = 0, const double &z_ = 0)
+	Vect3(const double &x_ = 0, const double &y_ = 0, const double &z_ = 0)
 	{
-		x = x_;
-		y = y_;
-		z = z_;
+		x = x_, coeffs[0] = x;
+		y = y_, coeffs[1] = y;
+		z = z_, coeffs[2] = z;
+	}
+	Vect3(const double coeffs_[3])
+	{
+		x = coeffs_[0], coeffs[0] = x;
+		y = coeffs_[1], coeffs[1] = y;
+		z = coeffs_[2], coeffs[2] = z;
 	}
 
-	Vect operator+(const Vect& u) const { return Vect(x + u.x, y + u.y, z + u.z); }
-	Vect operator-(const Vect& u) const { return Vect(x - u.x, y - u.y, z - u.z); }
-	Vect operator*(const double& l) const { return Vect(l * x, l * y, l * z); }
+	Vect3 operator+(const Vect3& v) const { return Vect3(x + v.x, y + v.y, z + v.z); }
+	Vect3 operator-(const Vect3& v) const { return Vect3(x - v.x, y - v.y, z - v.z); }
+	Vect3 operator*(const double& l) const { return Vect3(l * x, l * y, l * z); }
+	Vect3 operator*(const Vect3& v) const { return Vect3(y * v.z - z * v.y, z * v.x - x * v.z, x * v.y - y * v.x); }
 
-	void normalize() { *this = *this * (1 / sqrt(this->dot(*this))); }
-	double dot(const Vect& u) const { return x * u.x + y * u.y + z * u.z; }
+	void normalize() { *this = *this * (1 / sqrt(dot(*this))); }
+	Vect3 normalized() const { Vect3 v = *this; v.normalize(); return v; }
+	double dot(const Vect3& v) const { return x * v.x + y * v.y + z * v.z; }
 };
 
-enum type {
+Vect3 operator*(const double& l, const Vect3& v) { return v * l; }
+
+std::ostream& operator<<(std::ostream& os, const Vect3& v)
+{
+	os << "(" << v.x << ", " << v.y << ", " << v.z << ")"; // Careful if you put ' instead of " it will cout an integer instead of ', '
+	return os;
+}
+
+struct Matrix3 // Create a proper Matrix3 class from which Vector3 inherits
+{
+	double coeffs[9];
+
+	Matrix3(const Vect3& col1, const Vect3& col2, const Vect3& col3)
+	{
+		for (int i = 0; i < 3; i++)
+			coeffs[3 * i] = col1.coeffs[i], coeffs[3 * i + 1] = col2.coeffs[i], coeffs[3 * i + 2] = col3.coeffs[i];
+	}
+
+	Vect3 operator*(const Vect3& v) const
+	{
+		double coeffs_[3];
+		for (int i = 0; i < 3; i++)
+		{
+			double coeff = 0;
+			for (int j = 0; j < 3; j++)
+				coeff += coeffs[3 * i + j] * v.coeffs[j];
+			coeffs_[i] = coeff;
+		}
+		return Vect3(coeffs_);
+	}
+};
+
+enum refl_type {
 	DIFF,
 	REFR,
 	SPEC
@@ -30,10 +73,10 @@ enum type {
 struct Sphere
 {
 	double r;
-	Vect c, col, e;
-	type tp;
+	Vect3 c, col, e;
+	refl_type tp;
 
-	Sphere(double r_ = 0, Vect c_ = 0, Vect col_ = 0, Vect e_ = 0, type tp_ = DIFF)
+	Sphere(double r_ = 0, Vect3 c_ = Vect3(), Vect3 col_ = Vect3(), Vect3 e_ = Vect3(), refl_type tp_ = DIFF)
 	{
 		r = r_;
 		c = c_;
@@ -71,10 +114,10 @@ enum object_types {
 
 struct Ray
 {
-	Vect o, d;
+	Vect3 o, d;
 	double length;
 
-	Ray(Vect o_, Vect d_, double length_ = 0)
+	Ray(Vect3 o_, Vect3 d_, double length_ = 0)
 	{
 		o = o_, d = d_, length = length_;
 		d.normalize();
@@ -124,5 +167,20 @@ struct Ray
 			}
 			// elif (obj == TRIANGLE)
 		return Sphere();
+	}
+};
+
+struct Camera
+{
+	Vect3 pos, dir; // dir = cx
+	double incl; // angle cy does with the horizontal
+	double h_FoV, v_FoV; // as in Field fo View. Based on human characteristics by default
+
+	Camera(const Vect3& pos_ = Vect3(), const Vect3& dir_ = Vect3(1), const double& incl_ = 0, const double& h_FoV_ = 2 * M_PI / 3, const double& v_FoV_ = 2 * M_PI / 3)
+	{
+		pos = pos_, dir = dir_;
+		dir.normalize();
+		incl = incl_;
+		h_FoV = h_FoV_, v_FoV = v_FoV_;
 	}
 };

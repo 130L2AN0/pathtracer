@@ -12,7 +12,7 @@
     <ClInclude Include="D:\Creations\Algorithmes\pathtracer\pathtracer\setup.h">
       <Filter>Header Files</Filter>
     </ClInclude>
-    <ClInclude Include="D:\Creations\Algorithmes\pathtracer\pathtracer\functions.h">
+    <ClInclude Include="D:\Creations\Algorithmes\pathtracer\pathtracer\core.h">
       <Filter>Header Files</Filter>
     </ClInclude>
   </ItemGroup>
