@@ -23,9 +23,12 @@ struct Vect3
 	}
 
 	Vect3 operator+(const Vect3& v) const { return Vect3(x + v.x, y + v.y, z + v.z); }
+	Vect3 operator+=(const Vect3& v) const { return *this + v; }
 	Vect3 operator-(const Vect3& v) const { return Vect3(x - v.x, y - v.y, z - v.z); }
 	Vect3 operator*(const double& l) const { return Vect3(l * x, l * y, l * z); }
+	Vect3 operator/(const double& l) const { return (*this)*(1/l); }
 	Vect3 operator*(const Vect3& v) const { return Vect3(y * v.z - z * v.y, z * v.x - x * v.z, x * v.y - y * v.x); }
+	bool operator==(const Vect3& v) const { return x == v.x && y == v.y && z == v.z; }
 
 	void normalize() { *this = *this * (1 / sqrt(dot(*this))); }
 	Vect3 normalized() const { Vect3 v = *this; v.normalize(); return v; }
@@ -84,6 +87,8 @@ struct Sphere
 		e = e_;
 		tp = tp_;
 	}
+
+	bool operator==(const Sphere& s) const { return r == s.r && c == s.c && col == s.col && e == s.e && tp == s.tp;  }
 };
 
 struct Univers
@@ -123,7 +128,7 @@ struct Ray
 		d.normalize();
 	}
 
-	double intersect(const Sphere& s) const
+	const double intersect(const Sphere& s) const
 	{
 		double b, delta;
 		b = (o - s.c).dot(d);
@@ -138,7 +143,7 @@ struct Ray
 	}
 
 	// would be prettier with an Object class and the Sphere one inheriting from it
-	Sphere nearest_object(const Univers& univers)
+	const Sphere nearest_object(const Univers& univers)
 	{
 		if (univers.get_nb_objects() == 0)
 			return Sphere();
