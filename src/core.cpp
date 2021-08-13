@@ -57,8 +57,7 @@ int output(const Univers& uni, const int& nb_samples, const int& width_resol, co
 		{
 			for (int k = 0; k < 4; k++)
 			{
-				if (i%100 == 0 && j%100 == 0)
-					std::cout << "Evrthg fine thx : " << Vec3(i, j, k) << std::endl;
+				//if (j%100 == 0) std::cout << "Evrthg fine thx : " << Vec3(i, j, k) << std::endl;
 				for (int l = 0; l < nb_samples; l++)
 				{
 					// Consider making a tent filter
