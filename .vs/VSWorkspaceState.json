@@ -1,8 +1,8 @@
 {
   "ExpandedNodes": [
     "",
-    "\\build",
-    "\\pathtracer"
+    "\\src"
   ],
+  "SelectedNode": "\\src\\core.cpp",
   "PreviewInSolutionExplorer": false
 }

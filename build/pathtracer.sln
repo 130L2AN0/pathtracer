@@ -11,7 +11,7 @@ Project("{8BC9CEB8-8B4A-11D0-8D11-00A0C91BC942}") = "ZERO_CHECK", "ZERO_CHECK.vc
 	ProjectSection(ProjectDependencies) = postProject
 	EndProjectSection
 EndProject
-Project("{8BC9CEB8-8B4A-11D0-8D11-00A0C91BC942}") = "pathtracer", "pathtracer\pathtracer.vcxproj", "{C0841134-4898-310A-BE11-2CEE71D33CCE}"
+Project("{8BC9CEB8-8B4A-11D0-8D11-00A0C91BC942}") = "pathtracer", "pathtracer.vcxproj", "{C0841134-4898-310A-BE11-2CEE71D33CCE}"
 	ProjectSection(ProjectDependencies) = postProject
 		{2579078B-B603-3928-A637-9B3D0EC29F4F} = {2579078B-B603-3928-A637-9B3D0EC29F4F}
 	EndProjectSection

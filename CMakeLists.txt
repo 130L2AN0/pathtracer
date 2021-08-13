@@ -1,9 +1,11 @@
-﻿# CMakeList.txt : Top-level CMake project file, do global configuration
-# and include sub-projects here.
+﻿# CMakeList.txt : CMake project for pathtracer, include source and define
+# project specific logic here.
 #
 cmake_minimum_required (VERSION 3.8)
 
-project ("pathtracer")
+project(pathtracer)
 
-# Include sub-projects.
-add_subdirectory ("pathtracer")
+# Add source to this project's executable.
+add_executable (pathtracer  "src/dependencies.h" "src/objects.h" "src/main.cpp" "src/setup.h" "src/core.h" "src/objects.cpp" "src/core.cpp")
+
+# TODO: Add tests and install targets if needed.
