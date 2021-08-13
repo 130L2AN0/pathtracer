@@ -21,7 +21,7 @@ Vec3 radiance(Ray& ray, int& depth, const int& max_depth, const Univers& uni)
 	if (obstacle.tp == SPEC)
 	{
 		// std::cout << 2 << std::endl;
-		Ray refl(impact, ray.d - ray.d % normal * 2);
+		Ray refl(impact, ray.d - normal * ray.d.dot(normal) * 2);
 		return obstacle.e + obstacle.col.mult(radiance(refl, depth, max_depth, uni));
 	}
 	else if (obstacle.tp == DIFF)
