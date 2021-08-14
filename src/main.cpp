@@ -2,5 +2,5 @@
 
 int main()
 {
-	output(UNI);
+	output(UNI, 1000);
 }
