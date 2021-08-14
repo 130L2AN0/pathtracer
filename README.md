@@ -53,4 +53,4 @@ A simple pathtracer for spherical objects
 ## Results
 
 
-![Two Spheres with a Thousand Samples per Subpixel](1000_samples.png)
+![Two Spheres with a Thousand Samples per Subpixel](1000_samples.PNG)
