@@ -16,7 +16,7 @@ RIGHT(RADIUS, Vec3(SIDE + RADIUS, SIDE / 2, SIDE / 2), Vec3(), Vec3(.25, .25, .7
 TOP(RADIUS, Vec3(SIDE / 2, SIDE / 2, SIDE + RADIUS), Vec3(), Vec3(.75, .75, .75), DIFF),
 FIRST(BALL_RADIUS, Vec3(70, 70, BALL_RADIUS), Vec3(), Vec3(1, 1, 1)*.999, SPEC),
 SECOND(BALL_RADIUS, Vec3(20, 85, BALL_RADIUS), Vec3(.3, .3, .3), Vec3(.25, .25, .75), DIFF),
-LIGHT(500, Vec3(SIDE / 2, SIDE / 2, SIDE + 499.8), Vec3(12, 12, 12), Vec3(), DIFF);
+LIGHT(500, Vec3(SIDE / 2, SIDE / 2, SIDE + 499.8), Vec3(30, 30, 30), Vec3(), DIFF);
 
 const Sphere BASIC_SETUP[] = { BOTTOM, LEFT, BACK, RIGHT, TOP, FIRST, SECOND, LIGHT };
 const int NB_SPHERES = sizeof(BASIC_SETUP) / sizeof(Sphere);
