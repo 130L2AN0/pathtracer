@@ -1,7 +1,7 @@
 # pathtracer
 
 ## Description
-A simple pathtracer for spherical objects
+An elementary pathtracer for spherical objects
 
 ## Pseudo-code from Wikipedia (diffuse objects only) :
 ```
